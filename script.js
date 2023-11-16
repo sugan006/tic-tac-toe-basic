@@ -68,15 +68,15 @@ const drawFunction = () => {
 
 btnRef.forEach((element) => {
     element.addEventListener("click", () => {
-        if(xTurn){
-            xTurn = false;
-            element.innerText = "X";
-            element.disabled = true;
-        }
-        else{
-            xTurn = true;
-            element.innerText = "O";
-            element.disabled = true;
+        element.innerText = "X";
+        element.disabled = true;
+        let remainingButtons = Array.from(btnRef).filter(btn => btn.innerText === "");
+        if (remainingButtons.length > 0) {
+            const randomIndex = Math.floor(Math.random() * remainingButtons.length);
+            const randomButton = remainingButtons[randomIndex];
+            count += 1;
+            randomButton.innerText = "O";
+            randomButton.disabled = true;
         }
         count += 1;
         if(count == 9){
